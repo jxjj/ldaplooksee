@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "inquirer": "^3.2.3",
-    "simple-ldap-search": "^2.0.2"
+    "simple-ldap-search": "^2.0.3"
   }
 }

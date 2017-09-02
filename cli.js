@@ -23,18 +23,17 @@ function printResults(results) {
 }
 
 async function main() {
+  console.log('LDAP Look-See');
+  const config = await getConfig();
+  const { filter } = await inquirer.prompt(filterQuestions);
+  const ldap = new SimpleLDAPSearch(config);
   try {
-    console.log('LDAP Look-See');
-    const config = await getConfig();
-    const { filter } = await inquirer.prompt(filterQuestions);
-    const ldap = new SimpleLDAPSearch(config);
-
     const results = await ldap.search(filter);
     printResults(results);
-    ldap.destroy();
   } catch (err) {
     console.error(err);
   }
+  ldap.destroy();
 }
 
 main();
