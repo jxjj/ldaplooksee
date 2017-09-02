@@ -4,12 +4,19 @@
   "description": "Search LDAP",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "start": "./cli.js",
+    "dev": "nodemon ./cli.js"
   },
   "author": "James Johnson <james_johnson@mcad.edu> (https://james.mn)",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.22.0",
-    "eslint": "^4.6.0"
+    "eslint": "^4.6.0",
+    "eslint-config-airbnb-base": "^11.3.2",
+    "eslint-plugin-import": "^2.7.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "inquirer": "^3.2.3",
+    "simple-ldap-search": "^2.0.0"
   }
 }
