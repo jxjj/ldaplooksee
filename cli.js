@@ -48,11 +48,18 @@ async function main() {
 
   const { filter } = uid ? { filter: `uid=${uid}` } : await inquirer.prompt(filterQuestions);
   const ldap = new SimpleLDAPSearch(ldapConfig);
-  await ldap
+  ldap
     .search(filter)
     .then(prettifyLDAPResults)
-    .catch(err => log(err.message));
-  ldap.destroy();
+    .catch(err => log(err.message))
+    .then(ldap.destroy);
+
+  // cancel search and exit if it takes too long
+  setTimeout(() => {
+    log('Response timed out. Is your search filter valid?');
+    ldap.destroy();
+    process.exit();
+  }, 2000);
 }
 
 // log unhandled rejections
