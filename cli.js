@@ -10,12 +10,14 @@ const log = console.log;
 
 const cli = meow(`
 Usage
-  $ ldaplooksee
+  $ ldaplooksee <username>
 
 Options
   --reset   resets configuration
 
 Examples
+  $ ldaplooksee mlisa
+
   $ ldaplooksee
   [?] ldap url?
   [?] ldap base?
@@ -39,7 +41,12 @@ async function main() {
     config.reset();
   }
   const ldapConfig = await config.get();
-  const { filter } = await inquirer.prompt(filterQuestions);
+
+  // if string was passed in on cli, assume it's the uid
+  // and skip the questions
+  const uid = cli.input ? cli.input[0] : null;
+
+  const { filter } = uid ? { filter: `uid=${uid}` } : await inquirer.prompt(filterQuestions);
   const ldap = new SimpleLDAPSearch(ldapConfig);
   await ldap
     .search(filter)
