@@ -1,5 +1,7 @@
 # LDAP Look-See
 
+[![NPM Version](https://img.shields.io/npm/v/ldaplooksee.svg)](https://www.npmjs.com/package/ldaplooksee)
+
 > Command Line LDAP Search
 
 Search LDAP from command-line
@@ -61,6 +63,11 @@ telephoneNumber: '555-123-4567'
 ```sh
 $ ldaplooksee --reset
 ```
+
+## Related
+
+- [simple-ldap-search](https://github.com/jxjj/simple-ldap-search)
+- [ldapjs](http://ldapjs.org/)
 
 ## License
 
