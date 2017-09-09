@@ -1,10 +1,10 @@
-#!/usr/bin/env node -r reify
+#!/usr/bin/env node
 
-import inquirer from 'inquirer';
-import meow from 'meow';
-import SimpleLDAPSearch from 'simple-ldap-search';
-import config from './lib/config';
-import prettifyLDAPResults from './lib/prettifyLDAPResults';
+const inquirer = require('inquirer');
+const meow = require('meow');
+const SimpleLDAPSearch = require('simple-ldap-search').default;
+const config = require('./lib/config');
+const prettifyLDAPResults = require('./lib/prettifyLDAPResults');
 
 const log = console.log;
 

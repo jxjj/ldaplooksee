@@ -2,10 +2,12 @@
   "name": "ldaplooksee",
   "version": "0.1.0",
   "description": "Search LDAP",
-  "main": "index.js",
+  "bin": "cli.js",
   "scripts": {
     "start": "./cli.js",
-    "dev": "nodemon ./cli.js"
+    "dev": "nodemon ./cli.js",
+    "clean": "rimraf ./build",
+    "build": "pkg --out-path build ./cli.js"
   },
   "author": "James Johnson <james_johnson@mcad.edu> (https://james.mn)",
   "license": "MIT",
@@ -13,7 +15,8 @@
     "eslint": "^4.6.0",
     "eslint-config-airbnb-base": "^11.3.2",
     "eslint-plugin-import": "^2.7.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1"
   },
   "dependencies": {
     "chalk": "^2.1.0",
