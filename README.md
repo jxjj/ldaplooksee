@@ -24,8 +24,8 @@ $ ldaplooksee
 [?] Base?
 > dc=users,dc=localhost
 
-[?] Username?
-> cn=root
+[?] Username or DN?
+> root
 
 [?] Password?
 > ******
