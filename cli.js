@@ -1,8 +1,15 @@
-#!/usr/bin/env node
+#!/usr/bin/env node -r reify
 
-const inquirer = require('inquirer');
-const SimpleLDAPSearch = require('simple-ldap-search').default;
-const getConfig = require('./lib/getConfig');
+// const inquirer = require('inquirer');
+// const SimpleLDAPSearch = require('simple-ldap-search').default;
+// const getConfig = require('./lib/getConfig');
+
+import inquirer from 'inquirer';
+import SimpleLDAPSearch from 'simple-ldap-search';
+import getConfig from './lib/getConfig';
+import prettifyLDAPResults from './lib/prettifyLDAPResults';
+
+const log = console.log;
 
 const filterQuestions = [
   {
@@ -12,28 +19,33 @@ const filterQuestions = [
   },
 ];
 
-function printResults(results) {
-  const total = results.length;
-  console.log(`${total} RESULTS\n`);
+// function printResults(results) {
+//   const total = results.length;
+//   console.log(`${total} RESULTS\n`);
 
-  results.forEach((result, i) => {
-    console.log(`\n[${i}/${total}]`);
-    console.log(result);
-  });
-}
+//   results.forEach((result, i) => {
+//     console.log(`\n[${i}/${total}]`);
+//     console.log(result);
+//   });
+// }
 
 async function main() {
-  console.log('LDAP Look-See');
+  log('LDAP Look-See');
   const config = await getConfig();
   const { filter } = await inquirer.prompt(filterQuestions);
   const ldap = new SimpleLDAPSearch(config);
-  try {
-    const results = await ldap.search(filter);
-    printResults(results);
-  } catch (err) {
-    console.error(err);
-  }
+  await ldap
+    .search(filter)
+    .then(prettifyLDAPResults)
+    .catch((err) => {
+      console.error(err.message);
+    });
   ldap.destroy();
 }
+
+// log unhandled rejections
+process.on('unhandledRejection', (reason, p) => {
+  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+});
 
 main();
