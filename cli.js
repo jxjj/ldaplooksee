@@ -3,6 +3,7 @@
 const inquirer = require('inquirer');
 const meow = require('meow');
 const SimpleLDAPSearch = require('simple-ldap-search').default;
+const promiseTimeout = require('p-timeout');
 const config = require('./lib/config');
 const prettifyLDAPResults = require('./lib/prettifyLDAPResults');
 
@@ -48,18 +49,17 @@ async function main() {
 
   const { filter } = uid ? { filter: `uid=${uid}` } : await inquirer.prompt(filterQuestions);
   const ldap = new SimpleLDAPSearch(ldapConfig);
-  ldap
-    .search(filter)
+  const timeout = 2000;
+  await promiseTimeout(ldap.search(filter), timeout)
     .then(prettifyLDAPResults)
-    .catch(err => log(err.message))
-    .then(ldap.destroy);
+    .catch((err) => {
+      if (err.name !== 'TimeoutError') return log(err.message);
 
-  // cancel search and exit if it takes too long
-  setTimeout(() => {
-    log('Response timed out. Is your search filter valid?');
-    ldap.destroy();
-    process.exit();
-  }, 2000);
+      log(`Search timed out after ${timeout}ms.`);
+      return process.exit();
+    });
+
+  ldap.destroy();
 }
 
 // log unhandled rejections

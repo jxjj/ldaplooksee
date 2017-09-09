@@ -24,6 +24,7 @@
     "conf": "git+https://github.com/sindresorhus/conf.git",
     "inquirer": "^3.2.3",
     "meow": "^3.7.0",
+    "p-timeout": "^1.2.0",
     "reify": "^0.12.1",
     "simple-ldap-search": "^2.0.3"
   }
