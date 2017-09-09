@@ -11,30 +11,26 @@ $ npm install -g ldaplooksee
 
 ## Usage
 
+### Interactive Lookups
+
+ldaplooksee will prompt you for your ldap configuration.
+
 ```sh
 $ ldaplooksee
 
-no saved config
-
-[?] LDAP url (e.g. ldaps://ldap.hostname.com:1389)
+[?] LDAP url?
 > ldaps://ldap.example.org
 
-[?] Base for searching users
+[?] Base?
 > dc=users,dc=localhost
 
-[?] Distinguished Name (DN)
+[?] Username?
 > cn=root
 
-[?] Password
+[?] Password?
 > ******
 
-[?] Save Config to `~/.ldaplooksee.json`
-[Yn] YES/no
-> Y
-
-saving config ... done!
-
-[?] ldap search filter (e.g. `uid=artvandelay`)
+[?] ldap search (e.g. `uid=artvandelay`)
 > uid=artvandelay
 
 [1/1]
@@ -46,10 +42,11 @@ sn: 'Vandelay'
 telephoneNumber: '555-123-4567'
 ```
 
-Quick lookup:
+### Quick search
+Quick lookup, pass in uid as a command line argument
 
 ```sh
-$ ldaplooksee uid=artvandelay
+$ ldaplooksee artvandelay
 
 [1/1]
 dn: 'uid=artvandelay, dc=users, dc=localhost'
@@ -58,6 +55,11 @@ uid: 'artvandelay'
 givenName: 'Art'
 sn: 'Vandelay'
 telephoneNumber: '555-123-4567'
+```
+
+### Reset Config
+```sh
+$ ldaplooksee --reset
 ```
 
 ## License
