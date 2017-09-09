@@ -1,6 +1,6 @@
 {
   "name": "ldaplooksee",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Search LDAP",
   "bin": "cli.js",
   "main": "cli.js",
