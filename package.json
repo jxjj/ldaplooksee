@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "start": "./cli.js",
-    "dev": "nodemon ./cli.js"
+    "dev": "nodemon ./cli.js",
+    "updates:check": "ncu",
+    "updates:run": "ncu -u"
   },
   "author": "James Johnson <johnsojr@gmail.com> (https://james.mn)",
   "license": "MIT",
@@ -23,17 +25,18 @@
     "simple-ldap-search"
   ],
   "devDependencies": {
-    "eslint": "^4.6.0",
-    "eslint-config-airbnb-base": "^11.3.2",
-    "eslint-plugin-import": "^2.7.0",
-    "nodemon": "^1.11.0"
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nodemon": "^1.12.1",
+    "npm-check-updates": "^2.13.0"
   },
   "dependencies": {
-    "chalk": "^2.1.0",
+    "chalk": "^2.3.0",
     "conf": "git+https://github.com/sindresorhus/conf.git",
-    "inquirer": "^3.2.3",
+    "inquirer": "^4.0.0",
     "meow": "^3.7.0",
-    "p-timeout": "^1.2.0",
-    "simple-ldap-search": "^2.0.3"
+    "p-timeout": "^2.0.0",
+    "simple-ldap-search": "^2.0.4"
   }
 }
