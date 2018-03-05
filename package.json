@@ -37,6 +37,6 @@
     "inquirer": "^5.1.0",
     "meow": "^4.0.0",
     "p-timeout": "^2.0.1",
-    "simple-ldap-search": "^2.0.4"
+    "simple-ldap-search": "^2.0.6"
   }
 }
