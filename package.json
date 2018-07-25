@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "start": "./cli.js",
-    "dev": "nodemon ./cli.js"
+    "dev": "nodemon ./cli.js",
+    "release": "np"
   },
   "author": "James Johnson <johnsojr@gmail.com> (https://james.mn)",
   "license": "MIT",
@@ -26,7 +27,8 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.13.0",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "np": "*"
   },
   "dependencies": {
     "chalk": "^2.4.1",
