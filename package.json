@@ -1,6 +1,6 @@
 {
   "name": "ldaplooksee",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple CLI for searching LDAP",
   "repository": "jxjj/ldaplooksee",
   "bin": "cli.js",
