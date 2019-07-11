@@ -33,9 +33,9 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "conf": "git+https://github.com/sindresorhus/conf.git",
-    "inquirer": "^6.0.0",
+    "inquirer": "6.4.1",
     "meow": "^5.0.0",
     "p-timeout": "^2.0.1",
-    "simple-ldap-search": "^2.0.9"
+    "simple-ldap-search": "2.0.11"
   }
 }
