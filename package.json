@@ -7,11 +7,10 @@
   "bin": "cli.js",
   "files": [
     "cli.js",
-    "lib"
+    "lib/**/*.js"
   ],
   "scripts": {
     "start": "./cli.js",
-    "dev": "nodemon ./cli.js",
     "release": "np"
   },
   "author": "James Johnson <johnsojr@gmail.com> (https://james.mn)",
@@ -28,7 +27,6 @@
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "nodemon": "^2.0.7",
     "np": "^7.4.0"
   },
   "dependencies": {
