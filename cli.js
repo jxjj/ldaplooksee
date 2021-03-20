@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import inquirer from 'inquirer';
-import meow from 'meow';
-import SimpleLDAPSearch from 'simple-ldap-search';
-import promiseTimeout from 'p-timeout';
-import { resetConfig, getConfig } from './lib/config.js';
-import prettifyLDAPResults from './lib/prettifyLDAPResults.js';
+import inquirer from "inquirer";
+import meow from "meow";
+import SimpleLDAPSearch from "simple-ldap-search";
+import promiseTimeout from "p-timeout";
+import { resetConfig, getConfig } from "./lib/config.js";
+import prettifyLDAPResults from "./lib/prettifyLDAPResults.js";
 
 const { log } = console;
 
@@ -30,15 +30,15 @@ Examples
 
 const filterQuestions = [
   {
-    type: 'input',
-    name: 'filter',
-    message: 'ldap search (e.g. `uid=artvandelay`)?',
+    type: "input",
+    name: "filter",
+    message: "ldap search (e.g. `uid=artvandelay`)?",
   },
 ];
 
 async function main() {
   if (cli.flags.reset) {
-    log('Resetting config');
+    log("Resetting config");
     resetConfig();
   }
   const ldapConfig = await getConfig();
@@ -47,13 +47,15 @@ async function main() {
   // and skip the questions
   const uid = cli.input ? cli.input[0] : null;
 
-  const { filter } = uid ? { filter: `uid=${uid}` } : await inquirer.prompt(filterQuestions);
+  const { filter } = uid
+    ? { filter: `uid=${uid}` }
+    : await inquirer.prompt(filterQuestions);
   const ldap = new SimpleLDAPSearch(ldapConfig);
   const timeout = 2000;
   await promiseTimeout(ldap.search(filter), timeout)
     .then(prettifyLDAPResults)
     .catch((err) => {
-      if (err.name !== 'TimeoutError') return log(err.message);
+      if (err.name !== "TimeoutError") return log(err.message);
 
       log(`Search timed out after ${timeout}ms.`);
       return process.exit();
@@ -63,8 +65,8 @@ async function main() {
 }
 
 // log unhandled rejections
-process.on('unhandledRejection', (reason, p) => {
-  log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+process.on("unhandledRejection", (reason, p) => {
+  log("Unhandled Rejection at: Promise", p, "reason:", reason);
 });
 
 main();
