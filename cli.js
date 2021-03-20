@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-const inquirer = require('inquirer');
-const meow = require('meow');
-const SimpleLDAPSearch = require('simple-ldap-search').default;
-const promiseTimeout = require('p-timeout');
-const config = require('./lib/config');
-const prettifyLDAPResults = require('./lib/prettifyLDAPResults');
+import inquirer from 'inquirer';
+import meow from 'meow';
+import SimpleLDAPSearch from 'simple-ldap-search';
+import promiseTimeout from 'p-timeout';
+import { resetConfig, getConfig } from './lib/config.js';
+import prettifyLDAPResults from './lib/prettifyLDAPResults.js';
 
-const log = console.log;
+const { log } = console;
 
 const cli = meow(`
 Usage
@@ -39,9 +39,9 @@ const filterQuestions = [
 async function main() {
   if (cli.flags.reset) {
     log('Resetting config');
-    config.reset();
+    resetConfig();
   }
-  const ldapConfig = await config.get();
+  const ldapConfig = await getConfig();
 
   // if string was passed in on cli, assume it's the uid
   // and skip the questions

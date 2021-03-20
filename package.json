@@ -3,6 +3,7 @@
   "version": "1.0.6",
   "description": "Simple CLI for searching LDAP",
   "repository": "jxjj/ldaplooksee",
+  "type":"module",
   "bin": "cli.js",
   "files": [
     "cli.js",
@@ -36,6 +37,6 @@
     "inquirer": "8.0.0",
     "meow": "^9.0.0",
     "p-timeout": "^4.1.0",
-    "simple-ldap-search": "2.0.11"
+    "simple-ldap-search": "3.0.1"
   }
 }
