@@ -9,7 +9,8 @@ import prettifyLDAPResults from "./lib/prettifyLDAPResults.js";
 
 const { log } = console;
 
-const cli = meow(`
+const cli = meow(
+  `
 Usage
   $ ldaplooksee <username>
 
@@ -26,7 +27,11 @@ Examples
 
   $ ldaplooksee --reset
 
-`);
+`,
+  {
+    importMeta: import.meta,
+  }
+);
 
 const filterQuestions = [
   {
